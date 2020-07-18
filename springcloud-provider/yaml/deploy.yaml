@@ -1,0 +1,14 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: springcloud-provider-deployment
+spec:
+  template:
+    metadata:
+      labels:
+        app: springcloud-provider
+    spec:
+      containers:
+        - name: springcloud-provider
+          image: springcloud-provider
+          imagePullPolicy: IfNotPresent

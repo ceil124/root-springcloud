@@ -1,0 +1,31 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: springcloud-consumer-deployment
+spec:
+  template:
+    metadata:
+      labels:
+        app: springcloud-consumer
+    spec:
+      containers:
+        - name: springcloud-consumer
+          image: springcloud-consumer
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080
+              protocol: TCP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: springcloud-consumer
+spec:
+  selector:
+    app: springcloud-consumer
+  ports:
+    - port: 8080
+      targetPort: 8080
+      nodePort: 31001
+  type: NodePort
+
